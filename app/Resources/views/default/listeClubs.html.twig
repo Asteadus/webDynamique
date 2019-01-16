@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ include("nav.html.twig") }}
+
+        <nav class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <form>
+                            Recherche rapide <input type="text" name="recherche" value="Entrez un mot clé"> <input type="submit" value="Rechercher">
+                        </form>
+                    </div>
+
+                    <div class="navbar-collapse collapse">
+                        <div class="menu">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation"><a href="/">Accueil</a></li>
+                                <li role="presentation"><a href="/clubs" class="active">Clubs</a></li>
+                                <li role="presentation"><a href="/joueurs">Joueurs</a></li>
+                                <li role="presentation"><a href="/recherche">Recherche</a></li>
+                                <li role="presentation"><a href="/inscription">Inscription</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section>
+        <div class="jumbotron">
+            <h2>Clubs</h2>
+        </div>
+
+        <div class="container greybackground">
+            <table class="tabcenter">
+                <tr>
+                    <th>Écusson</th>
+                    <th>Nom du club</th>
+                    <th>Date création</th>
+                </tr>
+                <tr>
+                    <td><img class="imgMin" src="images/ecusson_lokeren.png" alt="écusson Lokeren"> </td>
+                    <td><a href="equipes/lokeren.html">KSC Lokeren</a></td>
+                    <td>01/07/1923</td>
+
+                </tr>
+            </table>
+        </div>
+    </section>
+{% endblock %}

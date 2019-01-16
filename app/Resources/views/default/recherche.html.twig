@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <header>
+        {{ include("nav.html.twig") }}
+
+        <nav class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <form>
+                            Recherche rapide <input type="text" name="recherche" value="Entrez un mot clé"> <input type="submit" value="Rechercher">
+                        </form>
+                    </div>
+
+                    <div class="navbar-collapse collapse">
+                        <div class="menu">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation"><a href="/">Accueil</a></li>
+                                <li role="presentation"><a href="/clubs">Clubs</a></li>
+                                <li role="presentation"><a href="/joueurs">Joueurs</a></li>
+                                <li role="presentation"><a href="/recherche" class="active">Recherche</a></li>
+                                <li role="presentation"><a href="/inscription">Inscription</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section>
+        <div class="jumbotron">
+            <h2>Recherche</h2>
+
+        </div>
+        <div class="container">
+            <div class="col-md-4">
+                <p>
+                <form>
+                    Clubs
+                    <select name="nom" size="1">
+                        <option value=""></option>
+                        <option value="anderlecht">Anderlecht</option>
+                        <option value="fc_bruges">Fc Bruges</option>
+                        <option value="standard_de_liege">Standard de Liège</option>
+
+                    </select>
+                </form>
+                </p>
+                <p>Nom<input id="nom" type="text"></p>
+                <p>Prénom <input id="prenom" type="text"></p>
+            </div>
+            <div class="col-md-4">
+                <p>Date de naissance <input id="date_naissance" type="date"></p>
+                <p>Nationnalité <input id="nationn alite" type="text"></p>
+                <p>Taille (cm) <input id="taille" type="text"></p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                <form>
+                    Pied
+                    <select name="nom" size="1">
+                        <option value=""></option>
+                        <option value="droit">Droitier</option>
+                        <option value="gaucher">Gaucher</option>
+                    </select>
+                </form>
+                </p>
+                <p>
+                <form>
+                    Position
+                    <select name="nom" size="1">
+                        <option value=""></option>
+                        <option value="gardien">Gardien</option>
+                        <option value="milieu">Milieu</option>
+                        <option value="attaquant">Attaquant</option>
+
+                    </select>
+                </form>
+                </p>
+                <form>
+                    <input TYPE="submit" NAME="nom" VALUE="Effectuer une recherche">
+                </form>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="jumbotron">
+            <h2>Liste</h2>
+
+        </div>
+
+    </section>
+{% endblock %}

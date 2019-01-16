@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <header>
+        {{ include("nav.html.twig") }}
+
+        <nav class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <form>
+                            Recherche rapide <input type="text" name="recherche" value="Entrez un mot clé"> <input type="submit" value="Rechercher">
+                        </form>
+                    </div>
+
+                    <div class="navbar-collapse collapse">
+                        <div class="menu">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation"><a href="/">Accueil</a></li>
+                                <li role="presentation"><a href="/clubs">Clubs</a></li>
+                                <li role="presentation"><a href="/joueurs" class="active">Joueurs</a></li>
+                                <li role="presentation"><a href="/recherche">Recherche</a></li>
+                                <li role="presentation"><a href="/inscription">Inscription</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section>
+        <div class="jumbotron">
+            <h2>Liste des joueurs</h2>
+        </div>
+
+
+        <div class="container greybackground">
+            <table class="tabcenter">
+                <tr>
+                    <th>Nom du joueur</th>
+                    <th>Age</th>
+                    <th>Nationalité</th>
+                    <th>Club</th>
+                </tr>
+                <tr>
+                    {% for joueur in listJoueurs  %}
+                    <td><a href="joueurs/olivier_deschacht.html">
+                            <img class="imgMin floatLeft" src="images/olivier_deschacht.jpg" alt="Photo Olivier Deschacht">
+                            {{ joueur.nom }}</a><br> Défenseur central</td>
+                    <td>37</td>
+                    <td>Belge</td>
+                    <td><a href="equipes/lokeren.html"><img class="imgMin" src="images/ecusson_lokeren.png" alt="Ecusson Lokeren"></a></td>
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
+
+    </section>
+
+{% endblock %}

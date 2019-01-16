@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recherche de joueurs</title>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/jquery.bxslider.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/isotope.css') }}" media="screen"/>
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('js/fancybox/jquery.fancybox.css') }}" media="screen"/>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+
+</head>
+
+<body>
+{% block body %}
+    {% block test %}
+        <h1>test</h1>
+    {% endblock  %}
+
+{% endblock %}
+{% block footer %}
+    <footer>
+        <div class="last-div">
+            <div class="container">
+                <div class="row">
+                    <div class="copyright">
+                        &copy; 2018 Recherche joueurs. All Rights Reserved
+                        <div class="credits">
+                            Designed by Aymeric Geury
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+
+{% block javascripts %}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{ asset('js/jquery-2.1.1.min.js')}}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('js/wow.min.js')}}"></script>
+    <script src="{{ asset('js/fancybox/jquery.fancybox.pack.js')}}"></script>
+    <script src="{{ asset('js/jquery.easing.1.3.js')}}"></script>
+    <script src="{{ asset('js/jquery.bxslider.min.js')}}"></script>
+    <script src="{{ asset('js/functions.js')}}"></script>
+    <script>
+        wow = new WOW({}).init();
+    </script>
+{% endblock %}
+</body>
+</html>

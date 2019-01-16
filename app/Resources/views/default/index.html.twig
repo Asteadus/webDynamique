@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <header>
+        {{ include("nav.html.twig") }}
+
+        <nav class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <form>
+                            Recherche rapide <input type="text" name="recherche" value="Entrez un mot clé"> <input type="submit" value="Rechercher">
+                        </form>
+                    </div>
+
+                    <div class="navbar-collapse collapse">
+                        <div class="menu">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation"><a href="/" class="active">Accueil</a></li>
+                                <li role="presentation"><a href="/clubs">Clubs</a></li>
+                                <li role="presentation"><a href="/joueurs">Joueurs</a></li>
+                                <li role="presentation"><a href="/recherche">Recherche</a></li>
+                                <li role="presentation"><a href="/inscription">Inscription</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="slider">
+        <div class="img-responsive">
+            <ul class="bxslider">
+                <li><img src="images/slider1.jpg" alt="" /></li>
+                <li><img src="images/slider2.jpg" alt="" /></li>
+                <li><img src="images/slider3.jpg" alt="" /></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6" >
+                <p id="textaccueil">Vous êtes à la recherche d'information sur un club ou un joueur évoluant en Jupiler Pro League? Vous êtes au bonne endroit
+                    ici vous pourrez trouver répondes à toutes vos questions. Vous avez accès à une liste des <a href="clubs.html">clubs</a>
+                    ou des <a href="joueurs.html"> joueurs</a>. Ou alors vous avez la possibilité de faire une recherches en fonction de vos
+                    souhait <a href="recherche.html">ici</a> </p>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
