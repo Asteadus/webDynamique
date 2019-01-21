@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Club
@@ -13,9 +14,25 @@ use Doctrine\ORM\Mapping as ORM;
 class Club
 {
     /**
-     * @ORM\OneToOne(targetEntity="Appbundle\Entity\Image", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
      */
     private $image;
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
 
 
     /**
@@ -23,6 +40,22 @@ class Club
      * @ORM\JoinColumn(nullable=false)
      */
     private $entraineur;
+
+    /**
+     * @return mixed
+     */
+    public function getEntraineur()
+    {
+        return $this->entraineur;
+    }
+
+    /**
+     * @param mixed $entraineur
+     */
+    public function setEntraineur($entraineur)
+    {
+        $this->entraineur = $entraineur;
+    }
 
     /**
      * @var int
@@ -58,6 +91,8 @@ class Club
      * @var string
      *
      * @ORM\Column(name="site_officiel", type="string", length=255)
+     * @Assert\Length(max=255)
+     * @Assert\Url()
      */
     private $siteOfficiel;
 
@@ -168,27 +203,5 @@ class Club
         return $this->siteOfficiel;
     }
 
-    /**
-     * Set clubImage
-     *
-     * @param \AppBundle\Entity\ClubImage $clubImage
-     *
-     * @return Club
-     */
-    public function setClubImage(\AppBundle\Entity\ClubImage $clubImage = null)
-    {
-        $this->clubImage = $clubImage;
 
-        return $this;
-    }
-
-    /**
-     * Get clubImage
-     *
-     * @return \AppBundle\Entity\ClubImage
-     */
-    public function getClubImage()
-    {
-        return $this->clubImage;
-    }
 }

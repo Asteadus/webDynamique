@@ -13,15 +13,28 @@ use Doctrine\ORM\Mapping as ORM;
 class Entraineur
 {
     /**
-     * @ORM\OneToOne(targetEntity="Appbundle\Entity\Image", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
      */
     private $image;
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Appbundle\Entity\Nationnalite", cascade={"persist"})
+     * @return mixed
      */
-    private $nationnalite;
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+
 
     /**
      * @var int
@@ -46,6 +59,51 @@ class Entraineur
      */
     private $prenom;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nationnalite", type="string", length=255)
+     */
+    private $nationnalite;
+
+    /**
+     * @return string
+     */
+    public function getNationnalite()
+    {
+        return $this->nationnalite;
+    }
+
+    /**
+     * @param string $nationnalite
+     */
+    public function setNationnalite($nationnalite)
+    {
+        $this->nationnalite = $nationnalite;
+    }
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_naissance", type="date")
+     */
+    private $dateNaissance;
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateNaissance()
+    {
+        return $this->dateNaissance;
+    }
+
+    /**
+     * @param \DateTime $dateNaissance
+     */
+    public function setDateNaissance($dateNaissance)
+    {
+        $this->dateNaissance = $dateNaissance;
+    }
 
     /**
      * Get id
@@ -105,4 +163,3 @@ class Entraineur
         return $this->prenom;
     }
 }
-

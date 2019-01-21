@@ -15,23 +15,37 @@ class Joueur
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Appbundle\Entity\Image", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
      */
     private $image;
 
-
     /**
-     * @ORM\OneToOne(targetEntity="Appbundle\Entity\Nationnalite", cascade={"persist"})
+     * @return mixed
      */
-    private $nationnalite;
+    public function getImage()
+    {
+        return $this->image;
+    }
 
     /**
-     * @ORM\ManyToMany(targetEntity="Appbundle\Entity\Position", cascade={"persist"})
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Position", cascade={"persist"})
+     * @ORM\JoinTable(name="joueur_position")
      */
     private $positions;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Appbundle\Entity\Club", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Club", cascade={"persist"})
      */
     private $club;
 
@@ -57,6 +71,30 @@ class Joueur
      * @ORM\Column(name="prenom", type="string", length=255)
      */
     private $prenom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nationnalite", type="string", length=255)
+     */
+    private $nationnalite;
+
+    /**
+     * @return string
+     */
+    public function getNationnalite()
+    {
+        return $this->nationnalite;
+    }
+
+    /**
+     * @param string $nationnalite
+     */
+    public function setNationnalite($nationnalite)
+    {
+        $this->nationnalite = $nationnalite;
+    }
+
 
     /**
      * @var \DateTime
@@ -209,5 +247,70 @@ class Joueur
     {
         return $this->pied;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->positions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+
+    /**
+     * Add position
+     *
+     * @param \AppBundle\Entity\Position $position
+     *
+     * @return Joueur
+     */
+    public function addPosition(\AppBundle\Entity\Position $position)
+    {
+        $this->positions[] = $position;
+
+        return $this;
+    }
+
+    /**
+     * Remove position
+     *
+     * @param \AppBundle\Entity\Position $position
+     */
+    public function removePosition(\AppBundle\Entity\Position $position)
+    {
+        $this->positions->removeElement($position);
+    }
+
+    /**
+     * Get positions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPositions()
+    {
+        return $this->positions;
+    }
+
+    /**
+     * Set club
+     *
+     * @param \AppBundle\Entity\Club $club
+     *
+     * @return Joueur
+     */
+    public function setClub(\AppBundle\Entity\Club $club = null)
+    {
+        $this->club = $club;
+
+        return $this;
+    }
+
+    /**
+     * Get club
+     *
+     * @return \AppBundle\Entity\Club
+     */
+    public function getClub()
+    {
+        return $this->club;
+    }
+}

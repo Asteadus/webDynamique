@@ -1,57 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <header>
+
         {{ include("nav.html.twig") }}
 
-        <nav class="navbar navbar-default navbar-static-top" role="navigation">
-            <div class="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <form>
-                            Recherche rapide <input type="text" name="recherche" value="Entrez un mot clé"> <input type="submit" value="Rechercher">
-                        </form>
-                    </div>
 
-                    <div class="navbar-collapse collapse">
-                        <div class="menu">
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation"><a href="../index.html">Accueil</a></li>
-                                <li role="presentation"><a href="../clubs.html">Clubs</a></li>
-                                <li role="presentation"><a href="../joueurs.html">Joueurs</a></li>
-                                <li role="presentation"><a href="../recherche.html">Recherche</a></li>
-                                <li role="presentation"><a href="../inscription.html">Inscription</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
     <section>
         <div class="jumbotron">
-            <h2>Olivier DESCHACHT</h2>
+            <h2>{{ joueur.nom }}</h2>
         </div>
 
         <div class="container greybackground">
             <div class="col-md-4"></div>
             <div class="col-md-5">
-                <img class="floatLeft" src="../images/olivier_deschacht.jpg" alt="Olivier Deschacht">
+                <img class="floatLeft" src="{{ asset(joueur.image.uploadDir ~ '/' ~ joueur.image.id ~ '.' ~ joueur.image.src) }}" alt="{{ joueur.image.alt }}">
                 <div id="textjoueur">
-                    <p>Nom: Deschacht</p>
-                    <p>Prénom: Olivier</p>
-                    <p>Date de naissance: 16/02/1981</p>
-                    <p>Nationnalité: belge</p>
-                    <p>Poste: Défenseur central</p>
-                    <p>Taille: 1m86</p>
-                    <p>Pied: gaucher </p>
-                    <p>Club:<a href="../equipes/lokeren.html"> KSC Lokeren</a></p>
+                    <p>Nom {{ joueur.nom }}</p>
+                    <p>Prénom: {{ joueur.prenom }}</p>
+                    <p>Date de naissance: {{ joueur.dateNaissance|date('d-m-Y') }}</p>
+                    <p>Nationnalité: {{ joueur.nationnalite }}</p>
+                    <p>Poste: {{joueur.positions}}</p>
+                    <p>Taille: {{ joueur.taille }} cm</p>
+                    <p>Pied: {{ joueur.pied }} </p>
+                    <p>Club:<a href="{{ path('club', {'id': joueur.club.id})}}"> {{ joueur.club.nom }}</a></p>
                 </div>
             </div>
 

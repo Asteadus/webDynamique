@@ -809,6 +809,11 @@ td, th /* Mettre une bordure sur les td ET les th */
 	height: 90px;
 
 }
+.imgMax{
+	width: 140px;
+	height: 140px;
+}
+
 .floatLeft{
 	float:left;
 }

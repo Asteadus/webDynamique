@@ -13,11 +13,5 @@ Use AppBundle\Entity\Joueur;
  */
 class JoueurRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function myFindAll(){
-        $queryBuilder = $this->createQueryBuilder('a');
-        $query = $queryBuilder->getQuery();
-        $results = $query->getResults();
-        
-        return $results;
-    }
+
 }
