@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\RechercheJoueur;
 use Doctrine\ORM\EntityRepository;
 Use Doctrine\ORM\QueryBuilder;
 Use AppBundle\Entity\Joueur;
@@ -13,5 +14,17 @@ Use AppBundle\Entity\Joueur;
  */
 class JoueurRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findJoueur(RechercheJoueur $recherche){
 
+        $query = $this->createQueryBuilder('j')
+            ->where('j.nom LIKE :nom')
+            ->andWhere('j.prenom LIKE :prenom')
+            ->setParameter('nom', '%'.$recherche->getNom().'%')
+            ->setParameter('prenom', '%'.$recherche->getPrenom().'%' )
+            ->getQuery();
+        $recherches = $query->getResult();
+
+
+        return $recherches;
+    }
 }

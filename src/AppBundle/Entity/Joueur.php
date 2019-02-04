@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Joueur
@@ -19,7 +20,7 @@ class Joueur
      */
     private $image;
 
-    /**
+     /**
      * @return mixed
      */
     public function getImage()
@@ -105,7 +106,12 @@ class Joueur
 
     /**
      * @var int
-     *
+     * @Assert\Range(
+     *      min = 120,
+     *      max = 220,
+     *      minMessage = "You must be at least {{ limit }}cm tall to enter",
+     *      maxMessage = "You cannot be taller than {{ limit }}cm to enter"
+     * )
      * @ORM\Column(name="taille", type="smallint")
      */
     private $taille;

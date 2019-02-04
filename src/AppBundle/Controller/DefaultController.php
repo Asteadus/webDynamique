@@ -3,11 +3,19 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Club;
+use AppBundle\Entity\Commentaire;
+use AppBundle\Entity\RechercheJoueur;
+use AppBundle\Form\CommentaireType;
+use AppBundle\Form\RechercheJoueurType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 Use AppBundle\Entity\Joueur;
+use AppBundle\Form\JoueurType;
 Use AppBundle\Repository\JoueurRepository;
+use AppBundle\Form\PostType;
+
 
 
 class DefaultController extends Controller
@@ -21,9 +29,9 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/clubs", name="clubs")
-     */
-    public function clubsAction(Request $request)
+         * @Route("/clubs", name="clubs")
+         */
+        public function clubsAction(Request $request)
     {
         $repository = $this
             ->getDoctrine()
@@ -62,10 +70,22 @@ class DefaultController extends Controller
     /**
      * @Route("/joueur/{id}", name="joueur")
      */
-    public function joueurAction(Joueur $joueur)
+    public function joueurAction(Joueur $joueur, Request $request)
+
     {
 
-        return $this->render('default/joueur.html.twig', ["joueur" => $joueur]);
+
+        $commentaire = new Commentaire();
+        $form = $this->createForm(CommentaireType::class,$commentaire);
+        if ($form->handleRequest($request)->isValid()){
+            $em = $this->get('doctrine.orm.entity_manager');
+            $em->persist($commentaire);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add("form.success","Bien ouéj gros");
+
+        }
+
+        return $this->render('default/joueur.html.twig', ["joueur" => $joueur, 'form' => $form->createView()] );
     }
 
     /**
@@ -73,8 +93,34 @@ class DefaultController extends Controller
      */
     public function rechercheAction(Request $request)
     {
-        return $this->render('default/recherche.html.twig'  );
+
+        $recherche = new RechercheJoueur();
+        $form = $this->createForm(RechercheJoueurType::class,$recherche);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $repository = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository(Joueur::class);
+            $listRecherches = $repository->findJoueur($recherche);
+
+            return $this->render('default/rechercheList.html.twig', ["listRecherche"=>$listRecherches]);
+        }
+
+
+        return $this->render('default/recherche.html.twig', array('form' => $form->createView()));
+
     }
+
+    /**
+     * @Route("/rechercheList", name="rechercheList")
+     */
+    public function rechercheList(Request $request)
+    {
+        return $this->render('default/rechercheList.html.twig');
+
+    }
+
 
     /**
      * @Route("/inscription", name="inscription")

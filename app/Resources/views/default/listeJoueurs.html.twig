@@ -17,19 +17,27 @@
                     <th>Année naissance</th>
                     <th>Nationalité</th>
                     <th>Club</th>
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <th>Admin</th>
+                    {% endif %}
                 </tr>
                 {% for joueur in listJoueurs  %}
                 <tr>
 
                     <td><a href="{{ path('joueur', {'id': joueur.id})}}">
                             {% if joueur.image is not null %}
-                               <img class="imgMin floatLeft" src="{{ asset(joueur.image.uploadDir ~ '/' ~ joueur.image.id ~ '.' ~ joueur.image.src) }}" alt="Photo Olivier Deschacht">{{ joueur.prenom }}
+                               <img class="imgMin floatLeft" src="{{ asset(joueur.image.uploadDir ~ '/' ~ joueur.image.id ~ '.' ~ joueur.image.src) }}" alt="{{ joueur.image.alt }}">{{ joueur.prenom }}
                             {% endif %}
-                            {{ joueur.nom }}</a><br> Défenseur central</td>
+                            {{ joueur.nom }}</a><br>
+                            {{ joueur.positions | join(',')}}
+                    </td>
                     <td>{{ joueur.dateNaissance |date('Y') }} </td>
                     <td>{{ joueur.nationnalite }}</td>
                     <td><a href="{{ path('club', {'id': joueur.club.id})}} "><img class="imgMin" src="{{ asset(joueur.club.image.uploadDir ~ '/' ~ joueur.club.image.id ~ '.' ~ joueur.club.image.src) }}" alt="{{ joueur.club.image.alt }}"></a></td>
-
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <td><a href="{{ path('editjoueur', {'id': joueur.id})}}">Update</a>
+                        <a href="{{ path('deletejoueur', {'id': joueur.id})}}">Delete</a></td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </table>

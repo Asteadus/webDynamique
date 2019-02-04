@@ -69,6 +69,12 @@ class Club
     /**
      * @var string
      *
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 30,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
      * @ORM\Column(name="nom", type="string", length=255, unique=true)
      */
     private $nom;

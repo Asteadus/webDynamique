@@ -14,13 +14,13 @@ class Commentaire
 {
     /**
      * @ORM\ManyToOne(targetEntity="Appbundle\Entity\Club", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $club;
 
     /**
      * @ORM\ManyToOne(targetEntity="Appbundle\Entity\Joueur", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $joueur;
 

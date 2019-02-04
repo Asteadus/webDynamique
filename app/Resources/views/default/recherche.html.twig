@@ -3,65 +3,7 @@
 
         {{ include("nav.html.twig") }}
     <section>
-        <div class="jumbotron">
-            <h2>Recherche</h2>
-
-        </div>
-        <div class="container">
-            <div class="col-md-4">
-                <p>
-                <form>
-                    Clubs
-                    <select name="nom" size="1">
-                        <option value=""></option>
-                        <option value="anderlecht">Anderlecht</option>
-                        <option value="fc_bruges">Fc Bruges</option>
-                        <option value="standard_de_liege">Standard de Liège</option>
-
-                    </select>
-                </form>
-                </p>
-                <p>Nom<input id="nom" type="text"></p>
-                <p>Prénom <input id="prenom" type="text"></p>
-            </div>
-            <div class="col-md-4">
-                <p>Date de naissance <input id="date_naissance" type="date"></p>
-                <p>Nationnalité <input id="nationn alite" type="text"></p>
-                <p>Taille (cm) <input id="taille" type="text"></p>
-            </div>
-            <div class="col-md-4">
-                <p>
-                <form>
-                    Pied
-                    <select name="nom" size="1">
-                        <option value=""></option>
-                        <option value="droit">Droitier</option>
-                        <option value="gaucher">Gaucher</option>
-                    </select>
-                </form>
-                </p>
-                <p>
-                <form>
-                    Position
-                    <select name="nom" size="1">
-                        <option value=""></option>
-                        <option value="gardien">Gardien</option>
-                        <option value="milieu">Milieu</option>
-                        <option value="attaquant">Attaquant</option>
-
-                    </select>
-                </form>
-                </p>
-                <form>
-                    <input TYPE="submit" NAME="nom" VALUE="Effectuer une recherche">
-                </form>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="jumbotron">
-            <h2>Liste</h2>
-
-        </div>
+        {{ form(form) }}
 
     </section>
 {% endblock %}

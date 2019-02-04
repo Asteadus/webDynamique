@@ -14,13 +14,19 @@
                     <th>Écusson</th>
                     <th>Nom du club</th>
                     <th>Date création</th>
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <th>Admin</th>
+                    {% endif %}
                 </tr>
                 {% for club in listClubs  %}
                 <tr>
                     <td><img class="imgMin" src="{{ asset(club.image.uploadDir ~ '/' ~ club.image.id ~ '.' ~ club.image.src) }}" alt="écusson Lokeren"> </td>
                     <td><a href="{{ path('club', {'id': club.id})}}">{{ club.nom }}</a></td>
                     <td>{{ club.dateCreation|date('d-m-Y') }}</td>
-
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <td><a href="{{ path('editclub', {'id': club.id})}}">Update</a>
+                        <a href="{{ path('deleteclub', {'id': club.id})}}">Delete</a></td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </table>

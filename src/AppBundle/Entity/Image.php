@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -16,7 +17,6 @@ class Image
 {
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")

@@ -10,9 +10,14 @@
         </div>
         <div class="col-md-5">
             <form>
-                Adresse email <input type="text" name="email"> <br>
-                Mot de passe <input type="password" name="password" id="margin-left-3"> <input type="submit" value="Se connecter"> <br>
-                <a href="/inscription">Pas encore inscrit? C'est par ICI</a>
+
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    Connecté en tant que {{ app.user.username }}
+                    -
+                    <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+                {% endif %}
             </form>
         </div>
     </div>
@@ -36,10 +41,10 @@
                 <div class="menu">
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation"><a href="/">Accueil</a></li>
-                        <li role="presentation"><a href="/clubs">Clubs</a></li>
-                        <li role="presentation"><a href="/joueurs">Joueurs</a></li>
-                        <li role="presentation"><a href="/recherche">Recherche</a></li>
-                        <li role="presentation"><a href="/inscription">Inscription</a></li>
+                        <li role="presentation"><a href="{{ path('clubs') }}">Clubs</a></li>
+                        <li role="presentation"><a href="{{ path('joueurs') }}">Joueurs</a></li>
+                        <li role="presentation"><a href="{{ path('recherche') }}">Recherche</a></li>
+                        <li role="presentation"><a href="{{ path('register') }}">Inscription</a></li>
                     </ul>
                 </div>
             </div>
