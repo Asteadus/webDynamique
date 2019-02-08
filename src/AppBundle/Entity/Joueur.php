@@ -14,9 +14,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Joueur
 {
 
-
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Commentaire", cascade={"persist"}, mappedBy="joueur")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $commentaire;
     /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $image;
 
@@ -37,6 +42,22 @@ class Joueur
     }
 
 
+
+    /**
+     * @return mixed
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * @param mixed $commentaire
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+    }
 
 
     /**

@@ -1,3 +1,4 @@
+{# Twig qui permet d'afficher la liste des joueurs #}
 {% extends 'base.html.twig' %}
 
 {% block body %}
@@ -29,11 +30,12 @@
                                <img class="imgMin floatLeft" src="{{ asset(joueur.image.uploadDir ~ '/' ~ joueur.image.id ~ '.' ~ joueur.image.src) }}" alt="{{ joueur.image.alt }}">{{ joueur.prenom }}
                             {% endif %}
                             {{ joueur.nom }}</a><br>
-                            {{ joueur.positions | join(',')}}
+                            {{ joueur.positions | join(', ')}}
                     </td>
                     <td>{{ joueur.dateNaissance |date('Y') }} </td>
                     <td>{{ joueur.nationnalite }}</td>
                     <td><a href="{{ path('club', {'id': joueur.club.id})}} "><img class="imgMin" src="{{ asset(joueur.club.image.uploadDir ~ '/' ~ joueur.club.image.id ~ '.' ~ joueur.club.image.src) }}" alt="{{ joueur.club.image.alt }}"></a></td>
+                    {# Si il est admin alors il a le bouton pour update et delete un club #}
                     {% if is_granted("ROLE_ADMIN") %}
                     <td><a href="{{ path('editjoueur', {'id': joueur.id})}}">Update</a>
                         <a href="{{ path('deletejoueur', {'id': joueur.id})}}">Delete</a></td>

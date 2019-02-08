@@ -1,3 +1,4 @@
+{# Twig qui permet d'afficher la  nav du site#}
 <header>
 <nav div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
@@ -12,7 +13,7 @@
             <form>
 
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    Connecté en tant que {{ app.user.username }}
+                    Connecté en tant que <a id="blue" href="{{ path('profile') }}">{{ app.user.username }}</a>
                     -
                     <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
                 {% else %}
@@ -25,17 +26,7 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="navigation">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <form>
-                    Recherche rapide <input type="text" name="recherche" value="Entrez un mot clé"> <input type="submit" value="Rechercher">
-                </form>
-            </div>
+
 
             <div class="navbar-collapse collapse">
                 <div class="menu">
@@ -44,7 +35,19 @@
                         <li role="presentation"><a href="{{ path('clubs') }}">Clubs</a></li>
                         <li role="presentation"><a href="{{ path('joueurs') }}">Joueurs</a></li>
                         <li role="presentation"><a href="{{ path('recherche') }}">Recherche</a></li>
-                        <li role="presentation"><a href="{{ path('register') }}">Inscription</a></li>
+
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            {# Si l'utilisateur est admin, il voit un bouton qui va l'amener à l'admin du site#}
+                            {% if is_granted("ROLE_ADMIN") %}
+                                <li role="presentation"><a href="{{ path('admin') }}">Admin</a></li>
+                                {# Si il est juste user il pourra voir son profil#}
+                                {% else %}
+                                    <li role="presentation"><a href="{{ path('profile') }}">Profil</a></li>
+                             {% endif %}
+                         {# Sinon il a le bouton pour s'inscrire #}
+                        {% else %}
+                            <li role="presentation"><a href="{{ path('register') }}">Inscription</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

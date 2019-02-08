@@ -4,35 +4,37 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Club;
 use AppBundle\Entity\Commentaire;
+use AppBundle\Entity\Joueur;
 use AppBundle\Entity\RechercheJoueur;
 use AppBundle\Form\CommentaireType;
+use AppBundle\Form\PostType;
 use AppBundle\Form\RechercheJoueurType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-Use AppBundle\Entity\Joueur;
-use AppBundle\Form\JoueurType;
-Use AppBundle\Repository\JoueurRepository;
-use AppBundle\Form\PostType;
-
+use UserBundle\Entity\User;
 
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function indexAction(Request $request)
-    {
-        return $this->render('default/index.html.twig'  );
-    }
+//***** Route de base ******
 
-    /**
-         * @Route("/clubs", name="clubs")
+//Permet de créer la route pour le homepage
+        /**
+         * @Route("/", name="homepage")
          */
+        public function indexAction(Request $request)
+        {
+            return $this->render('default/index.html.twig'  );
+        }
+//***** Route en rapport avec les clubs *****
+
+//Permet de renvoyer la liste des clubs à la twig listeclubs
+     /**
+     * @Route("/clubs", name="clubs")
+     */
         public function clubsAction(Request $request)
-    {
+        {
         $repository = $this
             ->getDoctrine()
             ->getManager()
@@ -43,6 +45,7 @@ class DefaultController extends Controller
 
     }
 
+// Permet de renvoyer le club à la vue club en fonction de l'id
     /**
      * @Route("/club/{id}", name="club")
      */
@@ -70,22 +73,32 @@ class DefaultController extends Controller
     /**
      * @Route("/joueur/{id}", name="joueur")
      */
-    public function joueurAction(Joueur $joueur, Request $request)
+    public function joueurAction(User $user,Joueur $joueur, Request $request)
 
     {
 
 
         $commentaire = new Commentaire();
+
         $form = $this->createForm(CommentaireType::class,$commentaire);
         if ($form->handleRequest($request)->isValid()){
+            $commentaire -> setJoueur($joueur);
+            $commentaire -> setUser($this->getUser());
             $em = $this->get('doctrine.orm.entity_manager');
             $em->persist($commentaire);
             $em->flush();
             $this->get('session')->getFlashBag()->add("form.success","Bien ouéj gros");
 
         }
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Commentaire');
+        $messages = $repository->findBy(array(),array('id'=> 'ASC'));
 
-        return $this->render('default/joueur.html.twig', ["joueur" => $joueur, 'form' => $form->createView()] );
+
+        return $this->render('default/joueur.html.twig', ["joueur" => $joueur, "messages"=>$messages, 'form' => $form->createView(),
+            'username' =>$this->getUser()] );
     }
 
     /**
@@ -131,12 +144,6 @@ class DefaultController extends Controller
 
     }
 
-    /**
-     * @Route("/crud", name="crud")
-     */
-    public function adminCrud(Request $request)
-    {
-        return $this->render('admin/crud.html.twig'  );
-    }
+
 
 }

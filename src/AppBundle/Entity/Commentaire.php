@@ -12,17 +12,70 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Commentaire
 {
-    /**
-     * @ORM\ManyToOne(targetEntity="Appbundle\Entity\Club", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $club;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Appbundle\Entity\Joueur", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", cascade={"persist"}, inversedBy="commentaire")
      * @ORM\JoinColumn(nullable=true)
      */
+    private $user;
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Club", cascade={"persist"}, inversedBy="commentaire")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $club;/**
+ *
+ * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Joueur", cascade={"persist"}, inversedBy="commentaire")
+ * @ORM\JoinColumn(nullable=true)
+ */
     private $joueur;
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClub()
+    {
+        return $this->club;
+    }
+
+    /**
+     * @param mixed $club
+     */
+    public function setClub($club)
+    {
+        $this->club = $club;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getJoueur()
+    {
+        return $this->joueur;
+    }
+
+    /**
+     * @param mixed $joueur
+     */
+    public function setJoueur($joueur)
+    {
+        $this->joueur = $joueur;
+    }
 
 
     /**
@@ -74,6 +127,11 @@ class Commentaire
     public function getMessage()
     {
         return $this->message;
+    }
+
+    public function __toString()
+    {
+        return $this->getMessage();
     }
 }
 

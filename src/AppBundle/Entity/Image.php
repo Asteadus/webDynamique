@@ -37,6 +37,11 @@ class Image
      */
     private $alt;
 
+    /**
+     * @var UploadedFile
+     * @Assert\Image()
+     */
+    private $file;
 
 
     // On ajoute cet attribut pour y stocker le nom du fichier temporairement
@@ -65,7 +70,6 @@ class Image
     {
         return $this->alt;
     }
-
 
 
     // On modifie le setter de File, pour prendre en compte l'upload d'un fichier lorsqu'il en existe déjà un autre
@@ -116,17 +120,17 @@ class Image
 
         // Si on avait un ancien fichier, on le supprime
         if (null !== $this->tempFilename) {
-            $oldFile = $this->getUploadRootDir().'/'.$this->id.'.'.$this->tempFilename;
+            $oldFile = $this->getUploadRootDir() . '/' . $this->id . '.' . $this->tempFilename;
             if (file_exists($oldFile)) {
                 unlink($oldFile);
             }
         }
 
         // On déplace le fichier envoyé dans le répertoire de notre choix
-        dump($this->getUploadRootDir().'/'.$this->id.'.'.$this->src);
+        dump($this->getUploadRootDir() . '/' . $this->id . '.' . $this->src);
         $this->file->move(
             $this->getUploadRootDir(), // Le répertoire de destination
-            $this->id.'.'.$this->src   // Le nom du fichier à créer, ici « id.extension »
+            $this->id . '.' . $this->src   // Le nom du fichier à créer, ici « id.extension »
         );
     }
 
@@ -136,7 +140,7 @@ class Image
     public function preRemoveUpload()
     {
         // On sauvegarde temporairement le nom du fichier, car il dépend de l'id
-        $this->tempFilename = $this->getUploadRootDir().'/'.$this->id.'.'.$this->src;
+        $this->tempFilename = $this->getUploadRootDir() . '/' . $this->id . '.' . $this->src;
     }
 
     /**
@@ -160,10 +164,10 @@ class Image
     protected function getUploadRootDir()
     {
         // On retourne le chemin relatif vers l'image pour notre code PHP
-        return __DIR__.'/../../../web/'.$this->getUploadDir();
+        return __DIR__ . '/../../../web/' . $this->getUploadDir();
     }
 
-    private $file;
+
 
     public function getFile()
     {

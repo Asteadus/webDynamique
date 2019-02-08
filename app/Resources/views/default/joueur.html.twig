@@ -1,3 +1,4 @@
+{# Twig qui permet d'afficher les détails d'un joueur #}
 {% extends 'base.html.twig' %}
 
 {% block body %}
@@ -12,7 +13,7 @@
 
         <div class="container greybackground">
             <div class="col-md-4"></div>
-            <div class="col-md-5">
+            <div class="col-md-8">
                 <img class="floatLeft" src="{{ asset(joueur.image.uploadDir ~ '/' ~ joueur.image.id ~ '.' ~ joueur.image.src) }}" alt="{{ joueur.image.alt }}">
                 <div id="textjoueur">
                     <p>Nom {{ joueur.nom }}</p>
@@ -27,10 +28,30 @@
 
             </div>
 
-            <div class="clear"></div>
-            <div>
-                {{ form(form) }}
+            <div class="commentaire">
+                <h2>Commentaires</h2>
             </div>
+            <div class="clear"></div>
+            <div class="col-md-4"></div>
+
+            <div class="col-md-8">
+                {# Si c'est au moins un user alors il a le form pour poster un commentaire #}
+                {% if is_granted("ROLE_USER") %}
+                {{ form(form) }}
+                {% endif %}
+            </div>
+            <div class="clear"></div>
+
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+                {% for message in messages %}
+                    <div class="comment">
+                        <p>Utilisateur: {{ message.user }}, Message numéro: {{ message.id }}</p>
+                        <p>Commentaire: {{ message }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="clear"></div>
         </div>
 
     </section>

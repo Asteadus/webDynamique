@@ -15,8 +15,31 @@ class Club
 {
     /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Commentaire", cascade={"persist"}, mappedBy="club")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $commentaire;
+
+    /**
+     * @return mixed
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * @param mixed $commentaire
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+    }
 
     /**
      * @return mixed

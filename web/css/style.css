@@ -316,10 +316,11 @@ box-shadow: 1px 2px 2px 4px rgba(204,204,204,1);
 	color:#333;
 }
 
+
 .jumbotron {
-	text-align:center;
-	margin-bottom:-2px;
-	background-color:#fff;	
+	text-align: center;
+	margin-bottom: -2px;
+	background-color: #fff;
 }
 .jumbotron p {
 	margin-top:30px;
@@ -851,8 +852,23 @@ td, th /* Mettre une bordure sur les td ET les th */
 
 	margin-left: 150px;
 }
+.commentaire{
+	text-align: center;
+	color:#ED502E !important;
+}
+.comment{
+	border: black 1px solid;
+	margin-top: 5px;
+}
 clear{
 	clear:both;
+}
+.fos_user_user_show{
+	text-align: center;
+	height: 150px;
+}
+#blue{
+	color:blue;
 }
 
 /* ========================================

@@ -1,3 +1,4 @@
+{# Twig qui permet d'afficher la liste de tous les clubs #}
 {% extends 'base.html.twig' %}
 {% block body %}
     {{ include("nav.html.twig") }}
@@ -9,7 +10,6 @@
 
         <div class="container greybackground">
             <table class="tabcenter">
-
                 <tr>
                     <th>Écusson</th>
                     <th>Nom du club</th>
@@ -23,6 +23,7 @@
                     <td><img class="imgMin" src="{{ asset(club.image.uploadDir ~ '/' ~ club.image.id ~ '.' ~ club.image.src) }}" alt="écusson Lokeren"> </td>
                     <td><a href="{{ path('club', {'id': club.id})}}">{{ club.nom }}</a></td>
                     <td>{{ club.dateCreation|date('d-m-Y') }}</td>
+                    {# Si il est admin alors il a le bouton pour update et delete un club #}
                     {% if is_granted("ROLE_ADMIN") %}
                     <td><a href="{{ path('editclub', {'id': club.id})}}">Update</a>
                         <a href="{{ path('deleteclub', {'id': club.id})}}">Delete</a></td>
