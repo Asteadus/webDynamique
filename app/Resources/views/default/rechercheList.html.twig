@@ -1,0 +1,50 @@
+{# Twig qui permet d'afficher le résultat de la recherche #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ include("nav.html.twig") }}
+
+    <section>
+        <div class="jumbotron">
+            <h2>Liste de la recherche</h2>
+        </div>
+
+
+        <div class="container greybackground">
+            <table class="tabcenter">
+                <tr>
+
+                    <th>Nom du joueur</th>
+                    <th>Année naissance</th>
+                    <th>Nationalité</th>
+                    <th>Club</th>
+                </tr>
+
+                    {% for recherche in listRecherche %}
+                    <tr>
+
+                        <td>
+                            {% if recherche.image is not null %}
+                                <img class="imgMin floatLeft" src="{{ asset(recherche.image.uploadDir ~ '/' ~ recherche.image.id ~ '.' ~ recherche.image.src) }}" alt="{{ recherche.image.alt }}">
+                            {% endif %}
+                            {{ recherche.prenom }}
+                            {{ recherche.nom }}
+                            <br>
+                            {{ recherche.positions | join(',')}}
+                        </td>
+                        <td>{{ recherche.dateNaissance |date('Y') }} </td>
+                        <td>{{ recherche.nationnalite }}</td>
+                        <td><a href="{{ path('club', {'id': recherche.club.id})}} "><img class="imgMin" src="{{ asset(recherche.club.image.uploadDir ~ '/' ~ recherche.club.image.id ~ '.' ~ recherche.club.image.src) }}" alt="{{ recherche.club.image.alt }}"></a></td>
+
+
+
+
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </section>
+
+{% endblock %}

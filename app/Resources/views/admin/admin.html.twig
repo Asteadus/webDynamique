@@ -1,0 +1,28 @@
+{# Twig de l'admin pour rediriger vers les différents options d'admin #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ include("nav.html.twig") }}
+    <section>
+        <div class="jumbotron">
+            <h2>Admin</h2>
+        </div>
+        <div class="container" >
+        <div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <ul >
+                    <li role="presentation"><a href="{{ path('addclubs') }}">Ajouter un Club</a></li>
+                    <li role="presentation"><a href="{{ path('addjoueurs') }}">Ajouter un Joueurs</a></li>
+                    <li role="presentation"><a href="{{ path('addentraineurs') }}">Ajouter un entraineur</a></li>
+                    <li role="presentation"><a href="{{ path('users') }}">Liste des users</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        </div>
+    </section>
+
+
+{% endblock %}

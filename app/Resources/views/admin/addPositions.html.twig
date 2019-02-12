@@ -1,0 +1,9 @@
+{# Twig pour le formulaire d'ajout de positions #}
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ include("nav.html.twig") }}
+
+    <section>
+        {{ form(form) }}
+    </section>
+{% endblock %}

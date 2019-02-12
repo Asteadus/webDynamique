@@ -1,0 +1,22 @@
+{% extends "@User/layout.html.twig" %}
+
+{% block body %}
+    {{ include("nav.html.twig") }}
+        <section>
+            <div class="jumbotron">
+                <h2>Inscription</h2>
+            </div>
+            <div class="container" >
+                <div class="col-md-5"></div>
+                <div class="col-md-6">
+                    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                    {{ form_widget(form) }}
+                    <div>
+                        <input type="submit" value="{{ 'Inscription'|trans }}" />
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+            <div class="clear"></div>
+        </section>
+{% endblock %}

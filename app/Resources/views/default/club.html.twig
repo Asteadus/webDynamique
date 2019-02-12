@@ -1,0 +1,31 @@
+{# Twig qui permet d'afficher les détails d'un club #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ include("nav.html.twig") }}
+    <section>
+        <div class="jumbotron">
+            <h2>{{ club.nom }}</h2>
+        </div>
+
+        <div class="container greybackground">
+            <div class="col-md-2"></div>
+            <div class="col-md-5">
+                <img class="floatLeft imgMax" src="{{ asset(club.image.uploadDir ~ '/' ~ club.image.id ~ '.' ~ club.image.src) }}" alt="{{ club.image.alt }}">
+                <div id="textclub">
+                    <p>Nom du club: {{ club.nom }}</p>
+                    <p>Date de création: {{ club.dateCreation|date('d-m-Y') }}</p>
+                    <p>Stade: {{ club.stade }}</p>
+                    <p><a href="{{ club.siteOfficiel }}">Site officiel</a></p>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <p>Entraineur {{ club.entraineur.nom }} {{ club.entraineur.prenom }}</p>
+                <img src="{{ asset(club.entraineur.image.uploadDir ~ '/' ~ club.entraineur.image.id ~ '.' ~ club.entraineur.image.src) }}" alt="{{ club.entraineur.image.alt }}">
+                <p>Nationnalité: {{ club.entraineur.nationnalite }}</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+    </section>
+{% endblock %}

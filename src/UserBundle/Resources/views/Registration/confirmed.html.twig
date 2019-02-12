@@ -1,0 +1,15 @@
+{% extends "@User/layout.html.twig" %}
+
+{% block body %}
+    {{ include("nav.html.twig") }}
+    <section>
+    {% trans_default_domain 'FOSUserBundle' %}
+
+    {% block fos_user_content %}
+        <p>{{ 'Inscription confirmée'|trans({'%username%': user.username}) }}</p>
+        {% if targetUrl %}
+            <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+        {% endif %}
+    {% endblock fos_user_content %}
+    </section>
+{% endblock %}

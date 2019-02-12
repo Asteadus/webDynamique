@@ -1,0 +1,33 @@
+{# Twig pour afficher la liste des utilisateurs #}
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ include("nav.html.twig") }}
+
+    <section>
+        <div class="jumbotron">
+            <h2>Clubs</h2>
+        </div>
+
+        <div class="container greybackground">
+            <table class="tabcenter">
+
+                <tr>
+                    <th>Liste des utisateurs</th>
+                    <th>Admin</th>
+
+                </tr>
+
+                {% for user in listUsers  %}
+                    <tr>
+                        {# Vérifie si l'utilisateur est banni ou non #}
+                        {% if user.enabled == 1 %}
+                        <td> <a href="{{ path('userprofil', {'id': user.id})}}">{{ user.username }}</a></td>
+                        <td><a href="{{ path('banuser', {'id': user.id})}}">Bannir</a></td>
+                        {% endif %}
+                    </tr>
+
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+{% endblock %}
