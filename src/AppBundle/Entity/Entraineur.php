@@ -14,31 +14,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Entraineur
 {
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
-     * @Assert\Valid()
-     */
-    private $image;
-
-
-    /**
-     * @return mixed
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param mixed $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
-
-
-
-    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -69,6 +44,36 @@ class Entraineur
     private $nationnalite;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_naissance", type="date")
+     */
+    private $dateNaissance;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
+     * @Assert\Valid()
+     */
+    private $image;
+
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
      * @return string
      */
     public function getNationnalite()
@@ -83,13 +88,6 @@ class Entraineur
     {
         $this->nationnalite = $nationnalite;
     }
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_naissance", type="date")
-     */
-    private $dateNaissance;
 
     /**
      * @return \DateTime

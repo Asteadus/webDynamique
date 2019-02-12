@@ -28,6 +28,10 @@ class Position
      */
     private $nom;
 
+    public function __toString()
+    {
+        return $this->getNom();
+    }
 
     /**
      * Get id
@@ -63,9 +67,6 @@ class Position
         return $this->nom;
     }
 
-    public function __toString()
-    {
-        return $this->getNom();
-    }
+
 }
 

@@ -12,6 +12,21 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Commentaire
 {
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="string", length=255)
+     */
+    private $message;
 
     /**
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", cascade={"persist"}, inversedBy="commentaire")
@@ -22,13 +37,20 @@ class Commentaire
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Club", cascade={"persist"}, inversedBy="commentaire")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $club;/**
- *
- * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Joueur", cascade={"persist"}, inversedBy="commentaire")
- * @ORM\JoinColumn(nullable=true)
- */
+    private $club;
+
+    /**
+    *
+    * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Joueur", cascade={"persist"}, inversedBy="commentaire")
+    * @ORM\JoinColumn(nullable=true)
+    */
     private $joueur;
 
+    public function __toString()
+    {
+        return $this->getMessage();
+    }
+    
     /**
      * @return mixed
      */
@@ -77,24 +99,6 @@ class Commentaire
         $this->joueur = $joueur;
     }
 
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="message", type="string", length=255)
-     */
-    private $message;
-
-
     /**
      * Get id
      *
@@ -129,9 +133,6 @@ class Commentaire
         return $this->message;
     }
 
-    public function __toString()
-    {
-        return $this->getMessage();
-    }
+
 }
 

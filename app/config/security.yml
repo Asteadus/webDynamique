@@ -41,3 +41,4 @@ security:
     - { path: ^/add, roles: ROLE_ADMIN }
     - { path: ^/edit, roles: ROLE_ADMIN }
     - { path: ^/delete, roles: ROLE_ADMIN }
+    - { path: ^/userprofil, roles: ROLE_ADMIN}

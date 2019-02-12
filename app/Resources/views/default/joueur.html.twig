@@ -45,10 +45,16 @@
             <div class="col-md-4"></div>
             <div class="col-md-8">
                 {% for message in messages %}
-                    <div class="comment">
-                        <p>Utilisateur: {{ message.user }}, Message numéro: {{ message.id }}</p>
-                        <p>Commentaire: {{ message }}</p>
-                    </div>
+                    {% if message.joueur.id == joueur.id %}
+                        <div class="comment">
+                            {% if is_granted("ROLE_ADMIN") %}
+                                    <a href="{{ path('deletecommentaire', {'id': message.id})}}">Supprimer le message</a>
+                            {% endif %}
+                           <p>Utilisateur: {{ message.user }}, Message numéro {{ message.id }}</p>
+                            <p>Commentaire: {{ message }}</p>
+
+                        </div>
+                    {% endif %}
                 {% endfor %}
             </div>
             <div class="clear"></div>

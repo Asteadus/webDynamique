@@ -14,73 +14,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Club
 {
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
-     * @Assert\Valid()
-     */
-    private $image;
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Commentaire", cascade={"persist"}, mappedBy="club")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $commentaire;
-
-    /**
-     * @return mixed
-     */
-    public function getCommentaire()
-    {
-        return $this->commentaire;
-    }
-
-    /**
-     * @param mixed $commentaire
-     */
-    public function setCommentaire($commentaire)
-    {
-        $this->commentaire = $commentaire;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param mixed $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
-
-
-    /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Entraineur", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $entraineur;
-
-    /**
-     * @return mixed
-     */
-    public function getEntraineur()
-    {
-        return $this->entraineur;
-    }
-
-    /**
-     * @param mixed $entraineur
-     */
-    public function setEntraineur($entraineur)
-    {
-        $this->entraineur = $entraineur;
-    }
-
-    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -125,6 +58,71 @@ class Club
      */
     private $siteOfficiel;
 
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
+     * @Assert\Valid()
+     */
+    private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Commentaire", cascade={"persist"}, mappedBy="club")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $commentaire;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Entraineur", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $entraineur;
+
+    /**
+     * @return mixed
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * @param mixed $commentaire
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEntraineur()
+    {
+        return $this->entraineur;
+    }
+
+    /**
+     * @param mixed $entraineur
+     */
+    public function setEntraineur($entraineur)
+    {
+        $this->entraineur = $entraineur;
+    }
 
     /**
      * Get id

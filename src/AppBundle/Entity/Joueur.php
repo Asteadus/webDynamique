@@ -24,42 +24,6 @@ class Joueur
      * @Assert\Valid()
      */
     private $image;
-
-     /**
-     * @return mixed
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param mixed $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
-
-
-
-    /**
-     * @return mixed
-     */
-    public function getCommentaire()
-    {
-        return $this->commentaire;
-    }
-
-    /**
-     * @param mixed $commentaire
-     */
-    public function setCommentaire($commentaire)
-    {
-        $this->commentaire = $commentaire;
-    }
-
-
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Position", cascade={"persist"})
      * @ORM\JoinTable(name="joueur_position")
@@ -102,23 +66,6 @@ class Joueur
     private $nationnalite;
 
     /**
-     * @return string
-     */
-    public function getNationnalite()
-    {
-        return $this->nationnalite;
-    }
-
-    /**
-     * @param string $nationnalite
-     */
-    public function setNationnalite($nationnalite)
-    {
-        $this->nationnalite = $nationnalite;
-    }
-
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_naissance", type="date")
@@ -144,6 +91,62 @@ class Joueur
      */
     private $pied;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->positions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+     /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * @param mixed $commentaire
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getNationnalite()
+    {
+        return $this->nationnalite;
+    }
+
+    /**
+     * @param string $nationnalite
+     */
+    public function setNationnalite($nationnalite)
+    {
+        $this->nationnalite = $nationnalite;
+    }
 
     /**
      * Get id
@@ -274,14 +277,6 @@ class Joueur
     {
         return $this->pied;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->positions = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
 
     /**
      * Add position
